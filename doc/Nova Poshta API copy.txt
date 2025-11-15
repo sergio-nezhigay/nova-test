@@ -1,0 +1,88 @@
+Nova Poshta API Endpoints for City and Warehouse Selection
+
+To implement an autocomplete for cities and then list their warehouses, you will use Nova Poshta’s JSON API (entry point https://api.novaposhta.ua/v2.0/json/
+novaposhta.ua
+). Key methods are getCities (to search cities) and getWarehouses (to list branches). For example:
+
+Search cities by name: Use the getCities method (model "Address") with a "FindByString" filter. This loads the directory of Ukrainian cities with Nova Poshta offices
+scribd.com
+. In practice you would POST JSON like:
+
+{
+  "apiKey": "<YOUR_API_KEY>",
+  "modelName": "Address",
+  "calledMethod": "getCities",
+  "methodProperties": {
+    "FindByString": "Київ"
+  }
+}
+
+
+The response returns matching city records (each with a Ref ID)
+scribd.com
+. Important: the FindByString search only works with Ukrainian names
+scribd.com
+, so be sure the user’s input is in Ukrainian.
+
+Alternative: Nova Poshta also provides the searchSettlements method (model "Address") for online searching by partial city/settlement name or postal code
+scribd.com
+. This can be used similarly, e.g.:
+
+{
+  "apiKey": "<YOUR_API_KEY>",
+  "modelName": "Address",
+  "calledMethod": "searchSettlements",
+  "methodProperties": {
+    "CityName": "київ"
+  }
+}
+
+
+This returns settlement records whose main description matches (e.g. "MainDescription":"Київ") and includes the settlement’s Ref. You could then use that Ref in the next step.
+
+List warehouses in the selected city: Once a city is chosen, call getWarehouses to retrieve its branches. The API allows filtering by the city’s reference or name
+scribd.com
+. For example, using the city’s Ref from above:
+
+{
+  "apiKey": "<YOUR_API_KEY>",
+  "modelName": "Address",
+  "calledMethod": "getWarehouses",
+  "methodProperties": {
+    "CityRef": "<SELECTED_CITY_REF>",
+    "Language": "UA"
+  }
+}
+
+
+This returns all warehouses in that city. (You can also pass "CityName": "Київ" instead of CityRef; the API supports both
+scribd.com
+.) Including "Language":"UA" ensures that the warehouse details come in Ukrainian
+awd.in.ua
+. Each warehouse object in the response has its own Ref, address fields (Description/ShortAddress), etc., which you can display for the user to choose.
+
+In summary, your first fetches will be: (1) search cities with Address/getCities (or Address/searchSettlements), and (2) fetch warehouses with Address/getWarehouses (filtering by CityRef or CityName). All requests must include your API key and be sent as JSON to Nova Poshta’s endpoint
+scribd.com
+scribd.com
+.
+
+Questions/Clarifications:
+
+Do you want to use searchSettlements (Address model) for autocomplete instead of getCities? It accepts partial city names or postal codes for online search
+scribd.com
+.
+
+When listing warehouses, will you use the Ref ID of the chosen city or its name? (The API supports both filters
+scribd.com
+, but using CityRef is recommended after a city search.)
+
+Nova Poshta’s examples use both "Address" and "AddressGeneral" as modelName. For consistency, do you have a preference? (For instance, some examples call AddressGeneral/getWarehouses with "Language":"UA"
+awd.in.ua
+.)
+
+Sources: Nova Poshta API documentation and examples
+scribd.com
+scribd.com
+scribd.com
+scribd.com
+awd.in.ua
