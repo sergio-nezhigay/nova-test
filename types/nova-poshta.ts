@@ -7,7 +7,7 @@ export interface NovaPoshtaApiRequest {
   apiKey: string;
   modelName: string;
   calledMethod: string;
-  methodProperties: Record<string, any>;
+  methodProperties: Record<string, unknown>;
 }
 
 export interface NovaPoshtaApiResponse<T> {
@@ -56,4 +56,22 @@ export interface Warehouse {
   CityDescription: string;
   SettlementRef: string;
   SettlementDescription: string;
+}
+
+/**
+ * API Response wrapper for client-side consumption
+ */
+export interface ApiResponse<T> {
+  data?: T;
+  error?: string;
+  success: boolean;
+}
+
+/**
+ * Search settlements response structure
+ * The API returns nested Addresses array
+ */
+export interface SearchSettlementsResponse {
+  TotalCount: number;
+  Addresses: Settlement[];
 }
