@@ -519,37 +519,37 @@ export default function Home() {
           <h2 className='text-xl font-semibold mb-4'>Прогрес розробки</h2>
           <div className='space-y-3'>
             <div className='flex items-center gap-3'>
-              <span className='flex-shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm'>
+              <span className='shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm'>
                 ✓
               </span>
               <span className='text-gray-700'>Ініціалізація проєкту</span>
             </div>
             <div className='flex items-center gap-3'>
-              <span className='flex-shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm'>
+              <span className='shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm'>
                 ✓
               </span>
               <span className='text-gray-700'>API сервісний шар</span>
             </div>
             <div className='flex items-center gap-3'>
-              <span className='flex-shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm'>
+              <span className='shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm'>
                 ✓
               </span>
               <span className='text-gray-700'>Автозаповнення міст</span>
             </div>
             <div className='flex items-center gap-3'>
-              <span className='flex-shrink-0 w-6 h-6 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm'>
+              <span className='shrink-0 w-6 h-6 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm'>
                 4
               </span>
               <span className='text-gray-500'>Вибір відділення</span>
             </div>
             <div className='flex items-center gap-3'>
-              <span className='flex-shrink-0 w-6 h-6 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm'>
+              <span className='shrink-0 w-6 h-6 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm'>
                 5
               </span>
               <span className='text-gray-500'>Форма декларації</span>
             </div>
             <div className='flex items-center gap-3'>
-              <span className='flex-shrink-0 w-6 h-6 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm'>
+              <span className='shrink-0 w-6 h-6 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm'>
                 6
               </span>
               <span className='text-gray-500'>
