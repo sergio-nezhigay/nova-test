@@ -79,3 +79,48 @@ export interface SearchSettlementsResponse {
   TotalCount: number;
   Addresses: Settlement[];
 }
+
+/**
+ * Internet Document (Declaration) Types
+ */
+
+export interface CreateInternetDocumentRequest {
+  NewAddress: string;
+  PayerType: 'Sender' | 'Recipient' | 'ThirdPerson';
+  PaymentMethod: 'Cash' | 'NonCash';
+  CargoType: 'Cargo' | 'Documents' | 'Parcel' | 'TiresWheels';
+  VolumeGeneral?: string;
+  Weight: string;
+  ServiceType:
+    | 'WarehouseWarehouse'
+    | 'WarehouseDoors'
+    | 'DoorsWarehouse'
+    | 'DoorsDoors';
+  SeatsAmount: string;
+  Description: string;
+  Cost: string;
+  CitySender: string;
+  Sender: string;
+  SenderAddress: string;
+  ContactSender: string;
+  SendersPhone: string;
+  CityRecipient: string;
+  Recipient: string;
+  RecipientAddress: string;
+  ContactRecipient: string;
+  RecipientsPhone: string;
+}
+
+export interface InternetDocument {
+  Ref: string;
+  CostOnSite: string;
+  EstimatedDeliveryDate: string;
+  IntDocNumber: string;
+  TypeDocument: string;
+}
+
+export interface CounterpartyContact {
+  Ref: string;
+  Description: string;
+  Phones: string;
+}

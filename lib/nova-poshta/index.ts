@@ -8,4 +8,5 @@ export {
   getCitiesByString,
   getWarehouses,
   getWarehousesByCityName,
+  createInternetDocument,
 } from './client';

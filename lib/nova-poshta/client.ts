@@ -5,6 +5,8 @@ import type {
   Settlement,
   Warehouse,
   SearchSettlementsResponse,
+  CreateInternetDocumentRequest,
+  InternetDocument,
 } from '@/types/nova-poshta';
 
 const API_URL = 'https://api.novaposhta.ua/v2.0/json/';
@@ -158,4 +160,30 @@ export async function getWarehousesByCityName(
   }
 
   return response.data;
+}
+
+/**
+ * Create Internet Document (Declaration)
+ * Note: This is a simplified version. Production use requires valid
+ * Sender/Recipient/ContactSender/ContactRecipient Refs from counterparty data
+ */
+export async function createInternetDocument(
+  apiKey: string,
+  request: CreateInternetDocumentRequest
+): Promise<InternetDocument> {
+  const response = await callNovaPoshtaApi<InternetDocument>(
+    apiKey,
+    'InternetDocument',
+    'save',
+    request as unknown as Record<string, unknown>
+  );
+
+  if (!response.success) {
+    console.error('Nova Poshta API errors:', response.errors);
+    throw new Error(
+      response.errors.join(', ') || 'Failed to create declaration'
+    );
+  }
+
+  return response.data[0];
 }
