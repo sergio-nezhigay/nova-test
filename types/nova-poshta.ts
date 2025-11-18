@@ -41,6 +41,10 @@ export interface Settlement {
   RegionDescription: string;
   ParentRegionTypes: string;
   ParentRegionCode: string;
+  DeliveryCityRef: string;
+  DeliveryCity: string;
+  SettlementTypeCode: string;
+  SettlementType: string;
 }
 
 export interface Warehouse {

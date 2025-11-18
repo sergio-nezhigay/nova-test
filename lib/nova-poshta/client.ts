@@ -102,14 +102,14 @@ export async function getCitiesByString(
 }
 
 /**
- * Get warehouses for a specific city
- * @param cityRef - City reference ID from search results
+ * Get warehouses for a specific settlement
+ * @param settlementRef - Settlement reference ID from search results
  */
 export async function getWarehouses(
   apiKey: string,
-  cityRef: string
+  settlementRef: string
 ): Promise<Warehouse[]> {
-  if (!cityRef) {
+  if (!settlementRef) {
     return [];
   }
 
@@ -118,7 +118,7 @@ export async function getWarehouses(
     'Address',
     'getWarehouses',
     {
-      CityRef: cityRef,
+      SettlementRef: settlementRef,
       Language: 'UA',
     }
   );
