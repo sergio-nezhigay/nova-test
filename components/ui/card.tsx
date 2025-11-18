@@ -5,12 +5,14 @@ interface CardProps {
   className?: string;
   onClick?: () => void;
   selected?: boolean;
+  onMouseEnter?: () => void;
 }
 
 export function Card({
   children,
   className,
   onClick,
+  onMouseEnter,
   selected = false,
 }: CardProps) {
   return (
@@ -24,6 +26,7 @@ export function Card({
         className
       )}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
     >
       {children}
     </div>

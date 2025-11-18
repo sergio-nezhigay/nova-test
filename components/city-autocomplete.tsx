@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import type { Settlement } from '@/types/nova-poshta';
 
 interface CityAutocompleteProps {
-  onCitySelect: (city: Settlement) => void;
+  onCitySelect: (city: Settlement | null) => void;
   selectedCity: Settlement | null;
   label?: string;
   placeholder?: string;
@@ -31,8 +31,10 @@ export function CityAutocomplete({
   const { cities, loading, error } = useCities(query);
 
   // Update input when city is selected externally
+  // This effect keeps the text input aligned with externally selected cities.
   useEffect(() => {
     if (selectedCity) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setQuery(selectedCity.MainDescription);
       setIsOpen(false);
     }
@@ -40,6 +42,7 @@ export function CityAutocomplete({
 
   // Reset highlighted index when cities change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHighlightedIndex(-1);
   }, [cities]);
 
@@ -50,7 +53,7 @@ export function CityAutocomplete({
 
     // Clear selection if input is cleared
     if (!value && selectedCity) {
-      onCitySelect(null as any);
+      onCitySelect(null);
     }
   };
 
